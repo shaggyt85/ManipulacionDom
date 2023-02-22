@@ -4,9 +4,14 @@
  **/
 
 // Promesa con javascrip vainnilla
-const url =  "https://platzi-avo.vercel.app/api/avo"
+const url = "https://platzi-avo.vercel.app/api/avo"
 const urlSite = "https://platzi-avo.vercel.app/"
 const appNode = document.querySelector('#mount')
+appNode.addEventListener('click', (event) => {
+    if (event.target.appNode === 'H2') {
+        window.alert("hola")
+    }
+})
 const formatPrice = (price) => {
     const newPrice = new window.Intl.NumberFormat('en-EN', {
         style: 'currency',
@@ -29,9 +34,10 @@ async function fetchData() {
         const allItems = []
         data.data.forEach((item) => {
             const image = document.createElement("img")
-            image.src  = `${urlSite}${item.image} `
-            const title = document.createElement('h2')
+            image.src = `${urlSite}${item.image} `
+            const title = document.createElement('H2')
             title.textContent = item.name
+
             const price = document.createElement("div")
             price.className = "text-gray-600"
             price.textContent = formatPrice(item.price)
@@ -41,7 +47,7 @@ async function fetchData() {
             allItems.push(article)
         })
         appNode.append(...allItems)
-    } catch (error){
+    } catch (error) {
         console.error(error)
     }
 }
@@ -50,7 +56,7 @@ async function fetchData() {
 //     let fragment = document.createDocumentFragment()
 //     try{
 //         const aguacate = await fetchData(url)
-        
+
 //         aguacate.data.forEach((item) => {
 //             console.log(aguacate.data, "data")
 //             const image = document.createElement("img")
